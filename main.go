@@ -7,7 +7,7 @@ import (
 )
 
 func HealthHandler(c *gin.Context) {
-	c.String(http.StatusOK, "ok")
+	c.String(http.StatusOK, "OK")
 }
 
 func main() {
