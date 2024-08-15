@@ -1,0 +1,33 @@
+# .github/workflows/ci.yml
+name: Go CI
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Go
+        uses: actions/setup-go@v2
+        with:
+          go-version: '1.22.3' # Go versiyasini o'zgartiring
+
+      - name: Run tests
+        run: go test ./...
+
+      - name: Build
+        run: go build -o myapp .
+
+      - name: Check binary
+        run: |
+          if [ ! -f myapp ]; then
+            echo "Binary not created!"
+            exit 1
+          fi
